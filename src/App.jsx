@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Github, Linkedin, Menu, X } from "lucide-react";
+import { Github, Linkedin, Menu, X, Sun, Moon } from "lucide-react";
 import "./App.css";
 
 const NAV = [
@@ -474,7 +474,7 @@ function StackTag({ label }) {
 }
 
 // NAVBAR
-function Navbar() {
+function Navbar({ theme, setTheme }) {
   const active = useActiveSection();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -487,13 +487,12 @@ function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-[999] h-[68px] flex items-center justify-between px-4 md:px-8 transition-all duration-400
-        ${
-          scrolled
-            ? "bg-[rgba(9,12,18,.97)] shadow-[0_1px_0_var(--xf)]"
-            : "bg-[rgba(9,12,18,.55)]"
-        }`}
-      style={{ backdropFilter: "blur(24px)" }}
+      className="fixed inset-x-0 top-0 z-[999] h-[68px] flex items-center justify-between px-4 md:px-8 transition-all duration-400"
+      style={{
+        background: scrolled ? "var(--nav-bg-scroll)" : "var(--nav-bg)",
+        boxShadow: scrolled ? "0 1px 0 var(--xf)" : "none",
+        backdropFilter: "blur(24px)",
+      }}
     >
       {/* Logo */}
       <button
@@ -545,8 +544,23 @@ function Navbar() {
         ))}
       </nav>
 
-      {/* CTA & Mobile Menu Toggle */}
-      <div className="flex items-center gap-4">
+      {/* CTA, Theme Toggle & Mobile Menu Toggle */}
+      <div className="flex items-center gap-3">
+        {/* Modern Theme Switcher */}
+        <button
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="w-9 h-9 rounded-xl flex items-center justify-center glass border border-[var(--xf)] text-[var(--ink2)] hover:text-[var(--btn)] transition-all duration-300 hover:scale-105"
+          style={{ cursor: "pointer" }}
+          title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          aria-label="Toggle theme"
+        >
+          {theme === "dark" ? (
+            <Sun size={17} className="transition-transform duration-500 hover:rotate-45" />
+          ) : (
+            <Moon size={17} className="transition-transform duration-500 hover:-rotate-12" />
+          )}
+        </button>
+
         <button
           onClick={() => goTo("contact")}
           className="hidden sm:flex glass-btn items-center gap-2 px-4 py-2 rounded-xl cursor-pointer text-[12px] font-semibold
@@ -558,7 +572,7 @@ function Navbar() {
         </button>
 
         <button
-          className="lg:hidden p-2 text-[var(--ink2)] cursor-pointer bg-transparent border-none outline-none hover:text-emerald-400 transition-colors"
+          className="lg:hidden p-2 text-[var(--ink2)] cursor-pointer bg-transparent border-none outline-none hover:text-[var(--btn)] transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -567,7 +581,10 @@ function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <div className="absolute top-[68px] left-0 w-full bg-[rgba(9,12,18,.98)] border-b border-[var(--xf)] shadow-xl lg:hidden flex flex-col p-4 gap-2 backdrop-blur-xl">
+        <div 
+          className="absolute top-[68px] left-0 w-full border-b border-[var(--xf)] shadow-xl lg:hidden flex flex-col p-4 gap-2 backdrop-blur-xl"
+          style={{ background: "var(--nav-mobile-bg)" }}
+        >
           {NAV.map(({ id, label }) => (
             <button
               key={id}
@@ -607,7 +624,7 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col relative overflow-hidden bg-black"
+      className="min-h-screen flex flex-col relative overflow-hidden bg-[var(--bg)]"
     >
       {/* ── Background: Network Grid ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-10">
@@ -622,10 +639,10 @@ function Hero() {
               height="80"
               patternUnits="userSpaceOnUse"
             >
-              <circle cx="2" cy="2" r="1" fill="#34d399" />
+              <circle cx="2" cy="2" r="1" fill="var(--grid-dots)" />
               <path
                 d="M2 2 L80 80 M2 80 L80 2"
-                stroke="#34d399"
+                stroke="var(--grid-dots)"
                 strokeWidth="0.2"
               />
             </pattern>
@@ -636,14 +653,14 @@ function Hero() {
 
       {/* ── Main Centered Container ── */}
       <div className="flex-1 flex flex-col justify-center relative z-10 px-5 md:px-10 mt-20 lg:mt-0">
-        {/* Content Row — Adjusted gaps for larger image */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 w-full max-w-[1500px] mx-auto">
+        {/* Content Row — Adjusted gaps for larger image and shifted slightly right */}
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 w-full max-w-[1500px] mx-auto lg:pl-20">
           {/* Left: Text Content (Smaller sizes) */}
           <div className="flex-1 max-w-[600px] text-center lg:text-left flex flex-col items-center lg:items-start">
             <Reveal delay={100}>
               <div className="mb-5">
-                <div className="glass-btn px-3 py-1.5 rounded-full border border-slate-800 inline-block">
-                  <span className="f-mono text-[9px] tracking-[.18em] uppercase text-emerald-400">
+                <div className="glass-btn px-3 py-1.5 rounded-full border border-[var(--xf)] inline-block">
+                  <span className="f-mono text-[9px] tracking-[.18em] uppercase text-[var(--btn)]">
                     Undergraduate Software Engineer · Final Year
                   </span>
                 </div>
@@ -651,7 +668,7 @@ function Hero() {
 
               {/* Smaller Headline Font Size */}
               <h1
-                className="f-br font-extrabold leading-[0.95] mb-6 text-white uppercase text-center lg:text-left"
+                className="f-br font-extrabold leading-[0.95] mb-6 text-[var(--ink)] uppercase text-center lg:text-left"
                 style={{
                   fontSize: "clamp(35px, 6vw, 60px)",
                   letterSpacing: "-.04em",
@@ -659,14 +676,14 @@ function Hero() {
               >
                 HI THERE,
                 <br />
-                <span className="gt-btn text-emerald-400">I AM THUSHANI ,</span>
+                <span className="gt-btn text-[var(--btn)]">I AM THUSHANI ,</span>
                 <br />
-                <span className="text-emerald-200 opacity-700">
+                <span className="text-[var(--hero-sub)]">
                   A WEB DEVELOPER.
                 </span>
               </h1>
 
-              <p className="text-slate-400 font-light leading-[1.7] max-w-[450px] mb-8 text-[15px] text-center lg:text-left">
+              <p className="text-[var(--ink3)] font-light leading-[1.7] max-w-[450px] mb-8 text-[15px] text-center lg:text-left">
                 I'm a Undergraduate Software Engineering student at The Open
                 University of Sri Lanka, passionate about building modern web
                 applications with clean, scalable code.
@@ -679,7 +696,7 @@ function Hero() {
                     href="https://github.com/thushaniwanigasinghe"
                     target="_blank"
                     rel="noreferrer"
-                    className="w-12 h-12 rounded-xl flex items-center justify-center glass border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-all shadow-xl"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center glass border border-[var(--xf)] text-[var(--ink3)] hover:text-[var(--btn)] hover:border-[var(--btn)] transition-all shadow-xl"
                   >
                     <Github size={20} strokeWidth={1.5} />
                   </a>
@@ -688,7 +705,7 @@ function Hero() {
                     href="https://linkedin.com/in/thushani-wanigasinghe-9364b4337"
                     target="_blank"
                     rel="noreferrer"
-                    className="w-12 h-12 rounded-xl flex items-center justify-center glass border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-all shadow-xl"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center glass border border-[var(--xf)] text-[var(--ink3)] hover:text-[var(--btn)] hover:border-[var(--btn)] transition-all shadow-xl"
                   >
                     <Linkedin size={20} strokeWidth={1.5} />
                   </a>
@@ -736,7 +753,7 @@ function Ticker() {
       style={{
         borderTop: "1px solid var(--xf)",
         borderBottom: "1px solid var(--xf)",
-        background: "rgba(0,0,0,0.3)",
+        background: "var(--ticker-bg)",
         backdropFilter: "blur(10px)",
       }}
     >
@@ -812,14 +829,13 @@ function About() {
                 Quick facts
               </p>
               <div
-                className="divide-y"
-                style={{ divideColor: "rgba(255,255,255,.05)" }}
+                className="divide-y divide-[var(--divider-color)]"
               >
                 {FACTS.map((f) => (
                   <div
                     key={f.key}
                     className="flex justify-between items-center py-3"
-                    style={{ borderBottom: "1px solid rgba(255,255,255,.04)" }}
+                    style={{ borderBottom: "1px solid var(--divider-color)" }}
                   >
                     <span className="f-mono text-[9px] tracking-wider uppercase text-[var(--ink3)]">
                       {f.key}
@@ -1148,12 +1164,12 @@ function Education() {
                   </span>
                 </div>
                 {e.link && (
-                  <div className="mt-5 border-t border-[rgba(255,255,255,0.05)] pt-4">
+                  <div className="mt-5 border-t border-[var(--xf)] pt-4">
                     <a
                       href={e.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="f-mono text-[11px] text-green-400 hover:text-green-300 transition-colors flex items-center gap-1"
+                      className="f-mono text-[11px] text-emerald-600 dark:text-green-400 hover:opacity-80 transition-opacity flex items-center gap-1"
                     >
                       View Certificate <span className="text-[14px]">↗</span>
                     </a>
@@ -1312,7 +1328,7 @@ function Contact() {
             ) : (
               <form
                 onSubmit={onSubmit}
-                className="glass rounded-3xl p-7 space-y-4 border border-[rgba(255,255,255,0.05)]"
+                className="glass rounded-3xl p-7 space-y-4 border border-[var(--xf)]"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
@@ -1452,13 +1468,33 @@ function Footer() {
 }
 // ROOT
 export default function Portfolio() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("theme");
+      if (saved) return saved;
+    }
+    return "dark"; // Default to dark mode for this premium look
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === "light") {
+      root.classList.add("light");
+      root.classList.remove("dark");
+    } else {
+      root.classList.add("dark");
+      root.classList.remove("light");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <>
       <div
         className="min-h-screen overflow-x-hidden"
         style={{ background: "var(--bg)", color: "var(--ink)" }}
       >
-        <Navbar />
+        <Navbar theme={theme} setTheme={setTheme} />
         <Hero />
         <Ticker />
         <About />

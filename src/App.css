@@ -34,6 +34,70 @@
   --wlh:   rgba(87,106,143,.20);
   --cl:    rgba(123,150,178,.10);
   --clh:   rgba(123,150,178,.20);
+  
+  /* UI structural styles (Dark Mode Defaults) */
+  --nav-bg-scroll: rgba(9, 12, 18, 0.97);
+  --nav-bg: rgba(9, 12, 18, 0.55);
+  --nav-mobile-bg: rgba(9, 12, 18, 0.98);
+  --glass-bg: rgba(16, 21, 31, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.055);
+  --card-lift-shadow: rgba(0, 0, 0, 0.4);
+  --divider-color: rgba(255, 255, 255, 0.05);
+  --grid-dots: #34d399;
+  --stroke-color: rgba(122, 146, 186, 0.28);
+  --ticker-bg: rgba(0, 0, 0, 0.3);
+  --hero-sub: #a7f3d0; /* Emerald 200 */
+  --glass-shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Light mode theme */
+html.light {
+  /* backgrounds */
+  --bg:   #f8fafc; 
+  --s1:   #f1f5f9;
+  --s2:   #e2e8f0;
+  --s3:   #cbd5e1;
+  --s4:   #94a3b8;
+  --xf:   #cbd5e1; /* slightly darker borders for better separation in light mode */
+  /* ink */
+  --ink:   #0f172a; /* Slate 900 */
+  --ink2:  #1e293b; /* Slate 800 (increased contrast) */
+  --ink3:  #334155; /* Slate 700 (increased contrast) */
+  --ink4:  #475569; /* Slate 600 (increased contrast) */
+  /* palette accents */
+  --warm:  #334155;
+  --warm2: #0f172a;
+  --warm3: #020617;
+  --cool:  #0284c7;
+  --cool2: #0369a1;
+  /* button accent */
+  --btn:   #059669; /* Emerald 600 (richer contrast) */
+  --btn2:  #065f46; /* Emerald 800 (richer contrast) */
+  --btn-bg:#059669;
+  --btnl:  rgba(5,150,105,.08);
+  --btnlh: rgba(5,150,105,.18);
+  /* status */
+  --ok:    #059669;
+  --okl:   rgba(5,150,105,.06);
+  /* glass vars */
+  --wl:    rgba(30,41,59,.06);
+  --wlh:   rgba(30,41,59,.12);
+  --cl:    rgba(2,132,199,.06);
+  --clh:   rgba(2,132,199,.12);
+  
+  /* UI structural styles */
+  --nav-bg-scroll: rgba(241, 245, 249, 0.97);
+  --nav-bg: rgba(241, 245, 249, 0.55);
+  --nav-mobile-bg: rgba(241, 245, 249, 0.98);
+  --glass-bg: rgba(255, 255, 255, 0.88); /* More opaque for stronger card definition */
+  --glass-border: rgba(15, 23, 42, 0.12); /* More visible border for glass elements */
+  --card-lift-shadow: rgba(15, 23, 42, 0.08);
+  --divider-color: rgba(15, 23, 42, 0.08);
+  --grid-dots: #059669;
+  --stroke-color: rgba(30, 41, 59, 0.15);
+  --ticker-bg: rgba(241, 245, 249, 0.4);
+  --hero-sub: #044e3d; /* Premium deep Forest Emerald */
+  --glass-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.02);
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -63,14 +127,15 @@ section{scroll-margin-top:72px;}
 .gt-logo{background:linear-gradient(135deg,var(--ink),var(--warm2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
 /* ── text stroke ── */
-.stroke-w{-webkit-text-stroke:1.5px rgba(122,146,186,.28);color:transparent;}
+.stroke-w{-webkit-text-stroke:1.5px var(--stroke-color);color:transparent;}
 
 /* ── glass ── */
 .glass{
-  background:rgba(16,21,31,.72);
+  background:var(--glass-bg);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.055);
+  border:1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 .glass-w{
   background:rgba(87,106,143,.09);
@@ -123,7 +188,7 @@ section{scroll-margin-top:72px;}
 
 /* ── card lift ── */
 .card-lift{transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s;}
-.card-lift:hover{transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,.4);}
+.card-lift:hover{transform:translateY(-5px);box-shadow:0 24px 56px var(--card-lift-shadow);}
 
 /* ── hover lines ── */
 .hline{position:absolute;bottom:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.16,1,.3,1);}
