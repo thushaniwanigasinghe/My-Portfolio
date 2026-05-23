@@ -193,7 +193,7 @@ const EDUCATION = [
   },
 
   {
-    period: "2024",
+    period: "2025",
     icon: "📉",
     degree: "Cost of Software Quality",
     institution: "EdApp",
@@ -203,7 +203,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2024",
+    period: "2025",
     icon: "🔍",
     degree: "Web Element Locator Strategies",
     institution: "Applitools",
@@ -213,7 +213,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2024",
+    period: "2025",
     icon: "🤝",
     degree: "The Whole Team Approach to Continuous Testing",
     institution: "Applitools",
@@ -222,7 +222,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2024",
+    period: "2025",
     icon: "🏗️",
     degree: "Setting a Foundation for Successful Test Automation",
     institution: "Applitools",
@@ -231,7 +231,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2024",
+    period: "2025",
     icon: "🧪",
     degree: "Codeless Test Automation with Selenium IDE",
     institution: "Applitools",
@@ -240,7 +240,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2024",
+    period: "2025",
     icon: "🚀",
     degree: "API Test Automation With Postman",
     institution: "Applitools",
@@ -250,7 +250,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2023",
+    period: "2025",
     icon: "🐍",
     degree: "Python Data Structures",
     institution: "Sololearn",
@@ -259,7 +259,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2023",
+    period: "2025",
     icon: "🗄️",
     degree: "Introduction to SQL",
     institution: "Sololearn",
@@ -268,7 +268,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2023",
+    period: "2025",
     icon: "☕",
     degree: "Introduction to Java",
     institution: "Sololearn",
@@ -277,7 +277,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2023",
+    period: "2025",
     icon: "💻",
     degree: "Introduction to Programming Using Python",
     institution: "Sololearn",
@@ -286,7 +286,7 @@ const EDUCATION = [
     warm: false,
   },
   {
-    period: "2023 — Ongoing",
+    period: "2025 — Ongoing",
     icon: "☁️",
     degree: "AWS Certified Cloud Practitioner",
     institution: "Amazon Web Services",
