@@ -189,7 +189,6 @@ const EDUCATION = [
     icon: "🎓",
     degree: "BSE (Hons) Software Engineering",
     institution: "Open University of Sri Lanka",
-    detail: "GPA 2.8 / 4.0 · ",
     warm: true,
   },
 
